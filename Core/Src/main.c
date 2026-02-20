@@ -54,6 +54,8 @@
 
 #define I2C3_TIMEOUT_MAX                    0x3000 /*<! The value of the maximal timeout for I2C waiting loops */
 #define SPI5_TIMEOUT_MAX                    0x1000
+
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -91,7 +93,12 @@ const osThreadAttr_t GUI_Task_attributes = {
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* USER CODE BEGIN PV */
-
+osThreadId_t engineTaskHandle;
+const osThreadAttr_t engineTask_attributes = {
+  .name = "engineTask",
+  .stack_size = 512 * 4,
+  .priority = (osPriority_t) osPriorityNormal1,
+};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -105,9 +112,12 @@ static void MX_LTDC_Init(void);
 static void MX_DMA2D_Init(void);
 static void MX_TIM4_Init(void);
 void StartDefaultTask(void *argument);
+
 extern void TouchGFX_Task(void *argument);
 
 /* USER CODE BEGIN PFP */
+void StartEngineTask(void *argument);
+
 static void BSP_SDRAM_Initialization_Sequence(SDRAM_HandleTypeDef *hsdram, FMC_SDRAM_CommandTypeDef *Command);
 
 
@@ -186,10 +196,10 @@ int main(void)
   /* Call PreOsInit function */
   MX_TouchGFX_PreOSInit();
   /* USER CODE BEGIN 2 */
-
+  TIM4->PSC = 80;
+  TIM4->CCR2 = 500;
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
-  TIM4->PSC = 191;
-  TIM4->CCR3 = 500;
+
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -220,6 +230,8 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
+  engineTaskHandle = osThreadNew(StartEngineTask, NULL, &engineTask_attributes);
+
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */
@@ -241,10 +253,7 @@ int main(void)
   }
   /* USER CODE END 3 */
 }
-void myfunc(){
-	TIM4->PSC = 300;
-	TIM4->CCR3 = 500;
-}
+
 /**
   * @brief System Clock Configuration
   * @retval None
@@ -543,7 +552,7 @@ static void MX_TIM4_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 500;
+  sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
@@ -654,22 +663,22 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : PA5 PA7 */
   GPIO_InitStruct.Pin = GPIO_PIN_5|GPIO_PIN_7;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PC4 */
   GPIO_InitStruct.Pin = GPIO_PIN_4;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PB2 PB12 PB13 PB14
                            PB15 */
   GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14
                           |GPIO_PIN_15;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PD12 PD13 */
@@ -1024,6 +1033,15 @@ void StartDefaultTask(void *argument)
   {
     osDelay(100);
   }
+}
+
+void StartEngineTask(void *argument)
+{
+	for (;;)
+	    {
+
+	    }
+
   /* USER CODE END 5 */
 }
 
