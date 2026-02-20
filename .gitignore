@@ -1,0 +1,66 @@
+#######################################
+# STM32CubeIDE
+#######################################
+
+# Build folders
+Debug/
+Release/
+build/
+
+# Generated files
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+*.o
+*.d
+*.su
+
+# CubeIDE settings
+.settings/
+.metadata/
+*.launch
+
+# Eclipse project files
+.project
+.cproject
+
+#######################################
+# TouchGFX
+#######################################
+
+# Generated TouchGFX build
+TouchGFX/build/
+TouchGFX/generated/
+
+# Simulator build files
+TouchGFX/simulator/build/
+
+#######################################
+# OS / Editor
+#######################################
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+#######################################
+# Logs
+#######################################
+
+*.log
+
+#######################################
+# Backup files
+#######################################
+
+*~
+*.bak
+*.tmp
