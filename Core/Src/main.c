@@ -55,20 +55,22 @@
 #define I2C3_TIMEOUT_MAX                    0x3000 /*<! The value of the maximal timeout for I2C waiting loops */
 #define SPI5_TIMEOUT_MAX                    0x1000
 
-#define Do_input_Pin GPIO_PIN_12
-#define Do_input_GPIO_Port GPIOB
-#define Re_input_Pin GPIO_PIN_13
-#define Re_input_GPIO_Port GPIOB
-#define Mi_input_Pin GPIO_PIN_14
-#define Mi_input_GPIO_Port GPIOB
-#define Fa_input_Pin GPIO_PIN_15
-#define Fa_input_GPIO_Port GPIOB
-#define Sol_input_Pin GPIO_PIN_5
-#define Sol_input_GPIO_Port GPIOA
+#define Do_input_Pin GPIO_PIN_10
+#define Do_input_GPIO_Port GPIOC
+#define Re_input_Pin GPIO_PIN_11
+#define Re_input_GPIO_Port GPIOC
+#define Mi_input_Pin GPIO_PIN_12
+#define Mi_input_GPIO_Port GPIOC
+#define Fa_input_Pin GPIO_PIN_2
+#define Fa_input_GPIO_Port GPIOD
+#define Sol_input_Pin GPIO_PIN_4
+#define Sol_input_GPIO_Port GPIOD
 #define La_input_Pin GPIO_PIN_5
-#define La_input_GPIO_Port GPIOA
-#define Si_input_Pin GPIO_PIN_5
-#define Si_input_GPIO_Port GPIOA
+#define La_input_GPIO_Port GPIOD
+#define Si_input_Pin GPIO_PIN_6
+#define Si_input_GPIO_Port GPIOD
+#define Doo_input_Pin GPIO_PIN_7
+#define Doo_input_GPIO_Port GPIOD
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -112,6 +114,7 @@ const osThreadAttr_t engineTask_attributes = {
   .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal1,
 };
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -125,7 +128,6 @@ static void MX_LTDC_Init(void);
 static void MX_DMA2D_Init(void);
 static void MX_TIM4_Init(void);
 void StartDefaultTask(void *argument);
-
 extern void TouchGFX_Task(void *argument);
 
 /* USER CODE BEGIN PFP */
@@ -205,7 +207,6 @@ void playKey(int k){
 		TIM4->CCR2 = 500;
 			break;
 	default:
-
 		TIM4->CCR2 = 0;
 			break;
 	}
@@ -717,31 +718,25 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PA5 PA7 */
-  GPIO_InitStruct.Pin = GPIO_PIN_5|GPIO_PIN_7;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PC4 */
-  GPIO_InitStruct.Pin = GPIO_PIN_4;
+  /*Configure GPIO pins : PC4 PC10 PC11 PC12 */
+  GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : PB2 PB12 PB13 PB14
-                           PB15 */
-  GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14
-                          |GPIO_PIN_15;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PD12 PD13 */
   GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_13;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PD2 PD4 PD5 PD6
+                           PD7 */
+  GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6
+                          |GPIO_PIN_7;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
@@ -1093,20 +1088,19 @@ void StartDefaultTask(void *argument)
 
 void StartEngineTask(void *argument)
 {
-	int playingKey=0;
+	int playingKey;
 	for (;;)
 	    {
-		if(HAL_GPIO_ReadPin(Do_input_GPIO_Port,Do_input_Pin))      playingKey = 1;
-			        else if(HAL_GPIO_ReadPin(Re_input_GPIO_Port,Re_input_Pin)) playingKey = 2;
-			        else if(HAL_GPIO_ReadPin(Mi_input_GPIO_Port,Mi_input_Pin)) playingKey = 3;
-			        else if(HAL_GPIO_ReadPin(Fa_input_GPIO_Port,Fa_input_Pin)) playingKey = 4;
-			        else if(HAL_GPIO_ReadPin(Sol_input_GPIO_Port,Sol_input_Pin)) playingKey = 5;
-			        else if(HAL_GPIO_ReadPin(La_input_GPIO_Port,La_input_Pin))   playingKey = 6;
-			        else if(HAL_GPIO_ReadPin(Si_input_GPIO_Port,Si_input_Pin))   playingKey = 7;
-			        else if(HAL_GPIO_ReadPin(Doo_input_GPIO_Port,Doo_input_Pin))  ;
-
+		if(HAL_GPIO_ReadPin(Do_input_GPIO_Port,Do_input_Pin))   playingKey = 1;
+			        else if(HAL_GPIO_ReadPin(Re_input_GPIO_Port,Re_input_Pin))    playingKey = 2;
+			        else if(HAL_GPIO_ReadPin(Mi_input_GPIO_Port,Mi_input_Pin))    playingKey = 3;
+			        else if(HAL_GPIO_ReadPin(Fa_input_GPIO_Port,Fa_input_Pin))    playingKey = 4;
+			        else if(HAL_GPIO_ReadPin(Sol_input_GPIO_Port,Sol_input_Pin))  playingKey = 5;
+			        else if(HAL_GPIO_ReadPin(La_input_GPIO_Port,La_input_Pin))    playingKey = 6;
+			        else if(HAL_GPIO_ReadPin(Si_input_GPIO_Port,Si_input_Pin))    playingKey = 7;
+			        else if(HAL_GPIO_ReadPin(Doo_input_GPIO_Port,Doo_input_Pin))  playingKey = 8;
 			        else playingKey = 0;
-
+		highlight1_visible = 1;
         playKey(playingKey);
         vTaskDelay(pdMS_TO_TICKS(10));
 	    }

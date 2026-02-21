@@ -5,6 +5,17 @@
   </Languages>
   <Texts>
     <TextGroup Id="Group1" />
+    <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_F0SN" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">   Go</Translation>
+      </Text>
+      <Text Id="__SingleUse_BWA7" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Ready</Translation>
+      </Text>
+      <Text Id="__SingleUse_43WB" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">START</Translation>
+      </Text>
+    </TextGroup>
   </Texts>
   <Typographies>
     <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" />

@@ -2,92 +2,294 @@
   "Application": {
     "Screens": [
       {
-        "Name": "Screen1",
+        "Name": "select_view",
         "Components": [
           {
-            "Type": "Box",
-            "Name": "box1",
-            "Width": 363,
-            "Height": 395,
-            "Color": {
-              "Red": 255
-            }
+            "Type": "Image",
+            "Name": "background",
+            "Width": 320,
+            "Height": 240,
+            "RelativeFilename": "__generated\\alternate_theme_images_backgrounds_320x240_gradient_light.png"
           },
           {
-            "Type": "Container",
-            "Name": "container1",
-            "Width": 250,
-            "Height": 250,
-            "Components": []
-          },
-          {
-            "Type": "Box",
-            "Name": "box2",
-            "X": 41,
-            "Y": 58,
-            "Width": 50,
-            "Height": 50,
-            "Color": {
-              "Red": 38,
-              "Green": 76,
-              "Blue": 120
-            }
-          },
-          {
-            "Type": "Box",
-            "Name": "box2_1",
-            "X": 138,
-            "Y": 58,
-            "Width": 50,
-            "Height": 50,
-            "Color": {
-              "Red": 38,
-              "Green": 76,
-              "Blue": 120
-            }
-          },
-          {
-            "Type": "Box",
-            "Name": "box2_2",
-            "X": 37,
-            "Y": 186,
-            "Width": 144,
-            "Height": 50,
-            "Color": {
-              "Red": 38,
-              "Green": 76,
-              "Blue": 120
-            }
-          },
-          {
-            "Type": "Button",
-            "Name": "button1",
-            "X": 18,
-            "Y": 264,
-            "Width": 214,
+            "Type": "ButtonWithLabel",
+            "Name": "buttonWithLabel1",
+            "X": 91,
+            "Y": 144,
+            "Width": 138,
             "Height": 36,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_36_medium_round_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_36_medium_round_active.png",
-            "Preset": "alternate_theme\\presets\\button\\regular\\height_36\\medium_round_active.json"
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_36_small_round_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_36_small_round_active.png",
+            "TextId": "__SingleUse_43WB",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_36\\small_round_active.json"
           }
         ],
         "Interactions": [
           {
-            "InteractionName": "Interaction1",
+            "InteractionName": "start_transition",
             "Trigger": {
               "Type": "TriggerClicked",
-              "TriggerComponent": "button1"
+              "TriggerComponent": "buttonWithLabel1"
             },
             "Action": {
-              "Type": "ActionExecuteCode"
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "East",
+              "ActionComponent": "play_view"
             }
           }
         ]
       },
       {
-        "Name": "Screen2",
-        "Components": [],
-        "Interactions": []
+        "Name": "play_view",
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "background",
+            "Width": 320,
+            "Height": 240,
+            "RelativeFilename": "__generated\\alternate_theme_images_backgrounds_320x240_gradient_dark.png"
+          },
+          {
+            "Type": "Container",
+            "Name": "guide_line_container",
+            "Width": 320,
+            "Height": 240,
+            "Components": [
+              {
+                "Type": "Box",
+                "Name": "guide_line_1",
+                "X": 79,
+                "Width": 3,
+                "Height": 240,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "Alpha": 100
+              },
+              {
+                "Type": "Box",
+                "Name": "guide_line_2",
+                "X": 159,
+                "Width": 3,
+                "Height": 240,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "Alpha": 100
+              },
+              {
+                "Type": "Box",
+                "Name": "guide_line_3",
+                "X": 239,
+                "Width": 3,
+                "Height": 240,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "Alpha": 100
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "highlight_container",
+            "Width": 320,
+            "Height": 240,
+            "Components": [
+              {
+                "Type": "Box",
+                "Name": "highlight_1",
+                "Width": 40,
+                "Height": 240,
+                "Visible": false,
+                "Color": {
+                  "Red": 255
+                },
+                "Alpha": 80
+              },
+              {
+                "Type": "Box",
+                "Name": "highlight_2",
+                "X": 40,
+                "Width": 39,
+                "Height": 240,
+                "Visible": false,
+                "Color": {
+                  "Red": 255,
+                  "Green": 115
+                },
+                "Alpha": 80
+              },
+              {
+                "Type": "Box",
+                "Name": "highlight_3",
+                "X": 82,
+                "Width": 39,
+                "Height": 240,
+                "Visible": false,
+                "Color": {
+                  "Red": 255,
+                  "Green": 230
+                },
+                "Alpha": 80
+              },
+              {
+                "Type": "Box",
+                "Name": "highlight_4",
+                "X": 120,
+                "Width": 39,
+                "Height": 240,
+                "Visible": false,
+                "Color": {
+                  "Red": 71,
+                  "Green": 158,
+                  "Blue": 13
+                },
+                "Alpha": 80
+              },
+              {
+                "Type": "Box",
+                "Name": "highlight_5",
+                "X": 162,
+                "Width": 39,
+                "Height": 240,
+                "Visible": false,
+                "Color": {
+                  "Green": 26,
+                  "Blue": 255
+                },
+                "Alpha": 80
+              },
+              {
+                "Type": "Box",
+                "Name": "highlight_6",
+                "X": 200,
+                "Width": 39,
+                "Height": 240,
+                "Visible": false,
+                "Color": {
+                  "Red": 136,
+                  "Blue": 255
+                },
+                "Alpha": 80
+              },
+              {
+                "Type": "Box",
+                "Name": "highlight_7",
+                "X": 242,
+                "Width": 39,
+                "Height": 240,
+                "Visible": false,
+                "Color": {
+                  "Red": 71,
+                  "Green": 31
+                },
+                "Alpha": 80
+              },
+              {
+                "Type": "Box",
+                "Name": "highlight_8",
+                "X": 280,
+                "Width": 40,
+                "Height": 240,
+                "Visible": false,
+                "Color": {
+                  "Red": 71,
+                  "Green": 71,
+                  "Blue": 71
+                },
+                "Alpha": 80
+              }
+            ]
+          },
+          {
+            "Type": "Box",
+            "Name": "hit_line",
+            "Y": 200,
+            "Width": 320,
+            "Height": 2,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea1",
+            "X": 98,
+            "Y": 86,
+            "Width": 124,
+            "Height": 48,
+            "TextId": "__SingleUse_BWA7",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "ready_transition",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerScreenTransitionBegins"
+            },
+            "Action": {
+              "Type": "ActionDelay",
+              "Duration": 1500
+            }
+          },
+          {
+            "InteractionName": "go_transition",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "ready_transition"
+            },
+            "Action": {
+              "Type": "ActionSetText",
+              "TextId": "__SingleUse_F0SN",
+              "ActionComponent": "textArea1"
+            }
+          },
+          {
+            "InteractionName": "FadeOut",
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "go_transition"
+            },
+            "Action": {
+              "Type": "ActionFade",
+              "Alpha": 0,
+              "Easing": "Linear",
+              "EasingOption": "In",
+              "Duration": 1000,
+              "ActionComponent": "textArea1"
+            }
+          }
+        ]
       }
     ],
     "CustomContainerDefinitions": [],
@@ -97,7 +299,7 @@
       "Height": 320
     },
     "SelectedColorDepth": 16,
-    "StartupScreenName": "Screen1",
+    "StartupScreenName": "select_view",
     "SelectedStartupLanguage": "GB",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",
@@ -135,7 +337,7 @@
     "LandscapeSkinY": 0,
     "PortraitSkinX": 0,
     "PortraitSkinY": 0,
-    "DisplayOrientation": "Portrait",
+    "DisplayOrientation": "Landscape",
     "Family": "STM32F4",
     "SubFamily": "STM32F429/439",
     "Toolchain": "STM32CubeIDE",
