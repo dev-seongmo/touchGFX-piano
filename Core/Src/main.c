@@ -55,7 +55,20 @@
 #define I2C3_TIMEOUT_MAX                    0x3000 /*<! The value of the maximal timeout for I2C waiting loops */
 #define SPI5_TIMEOUT_MAX                    0x1000
 
-
+#define Do_input_Pin GPIO_PIN_12
+#define Do_input_GPIO_Port GPIOB
+#define Re_input_Pin GPIO_PIN_13
+#define Re_input_GPIO_Port GPIOB
+#define Mi_input_Pin GPIO_PIN_14
+#define Mi_input_GPIO_Port GPIOB
+#define Fa_input_Pin GPIO_PIN_15
+#define Fa_input_GPIO_Port GPIOB
+#define Sol_input_Pin GPIO_PIN_5
+#define Sol_input_GPIO_Port GPIOA
+#define La_input_Pin GPIO_PIN_5
+#define La_input_GPIO_Port GPIOA
+#define Si_input_Pin GPIO_PIN_5
+#define Si_input_GPIO_Port GPIOA
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -154,6 +167,49 @@ static LCD_DrvTypeDef* LcdDrv;
 
 uint32_t I2c3Timeout = I2C3_TIMEOUT_MAX; /*<! Value of Timeout when I2C communication fails */
 uint32_t Spi5Timeout = SPI5_TIMEOUT_MAX; /*<! Value of Timeout when SPI communication fails */
+
+
+void playKey(int k){
+	switch(k){
+
+	case 1:
+		TIM4->PSC = 383;
+		TIM4->CCR2 = 500;
+		break;
+	case 2:
+		TIM4->PSC = 340;
+		TIM4->CCR2 = 500;
+		break;
+	case 3:
+		TIM4->PSC = 304;
+		TIM4->CCR2 = 500;
+		break;
+	case 4 :
+		TIM4->PSC = 287;
+		TIM4->CCR2 = 500;
+			break;
+	case 5 :
+		TIM4->PSC = 255;
+		TIM4->CCR2 = 500;
+			break;
+	case 6 :
+		TIM4->PSC = 227;
+		TIM4->CCR2 = 500;
+			break;
+	case 7 :
+		TIM4->PSC = 202;
+		TIM4->CCR2 = 500;
+			break;
+	case 8  :
+		TIM4->PSC = 191;
+		TIM4->CCR2 = 500;
+			break;
+	default:
+
+		TIM4->CCR2 = 0;
+			break;
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -1037,9 +1093,22 @@ void StartDefaultTask(void *argument)
 
 void StartEngineTask(void *argument)
 {
+	int playingKey=0;
 	for (;;)
 	    {
+		if(HAL_GPIO_ReadPin(Do_input_GPIO_Port,Do_input_Pin))      playingKey = 1;
+			        else if(HAL_GPIO_ReadPin(Re_input_GPIO_Port,Re_input_Pin)) playingKey = 2;
+			        else if(HAL_GPIO_ReadPin(Mi_input_GPIO_Port,Mi_input_Pin)) playingKey = 3;
+			        else if(HAL_GPIO_ReadPin(Fa_input_GPIO_Port,Fa_input_Pin)) playingKey = 4;
+			        else if(HAL_GPIO_ReadPin(Sol_input_GPIO_Port,Sol_input_Pin)) playingKey = 5;
+			        else if(HAL_GPIO_ReadPin(La_input_GPIO_Port,La_input_Pin))   playingKey = 6;
+			        else if(HAL_GPIO_ReadPin(Si_input_GPIO_Port,Si_input_Pin))   playingKey = 7;
+			        else if(HAL_GPIO_ReadPin(Doo_input_GPIO_Port,Doo_input_Pin))  ;
 
+			        else playingKey = 0;
+
+        playKey(playingKey);
+        vTaskDelay(pdMS_TO_TICKS(10));
 	    }
 
   /* USER CODE END 5 */
