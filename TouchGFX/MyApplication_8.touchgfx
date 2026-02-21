@@ -221,6 +221,206 @@
             ]
           },
           {
+            "Type": "Container",
+            "Name": "note_container",
+            "Width": 320,
+            "Height": 240,
+            "Components": [
+              {
+                "Type": "Box",
+                "Name": "note_1",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "Box",
+                "Name": "note_2",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "Box",
+                "Name": "note_3",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "Box",
+                "Name": "note_4",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "Box",
+                "Name": "note_5",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "Box",
+                "Name": "note_6",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "Box",
+                "Name": "note_7",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "Box",
+                "Name": "note_8",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "Box",
+                "Name": "note_9",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "Box",
+                "Name": "note_10",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "Box",
+                "Name": "note_11",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "Box",
+                "Name": "note_12",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "Box",
+                "Name": "note_13",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "Box",
+                "Name": "note_14",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "Box",
+                "Name": "note_15",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "Box",
+                "Name": "note_0",
+                "Y": -7,
+                "Width": 40,
+                "Height": 7,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              }
+            ]
+          },
+          {
             "Type": "Box",
             "Name": "hit_line",
             "Y": 200,

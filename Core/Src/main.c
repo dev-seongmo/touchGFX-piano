@@ -138,7 +138,21 @@ volatile uint8_t highlight5_visible = 0;
 volatile uint8_t highlight6_visible = 0;
 volatile uint8_t highlight7_visible = 0;
 volatile uint8_t highlight8_visible = 0;
+//from here ai assist code
+volatile uint32_t g_song_ms = 0;
+volatile uint8_t  g_song_playing = 0;
+typedef struct {
+  uint8_t lane;
+  uint32_t time_ms;
+} NoteEvent;
 
+static const NoteEvent star[] = {
+  {1, 1000}, {1, 1500},
+  {5, 2000}, {5, 2500},
+  {6, 3000}, {6, 3500},
+  {5, 4000},
+};
+static const uint32_t star_len = sizeof(star)/sizeof(star[0]);
 /* USER CODE BEGIN PFP */
 void StartEngineTask(void *argument);
 
@@ -1098,8 +1112,22 @@ void StartDefaultTask(void *argument)
 void StartEngineTask(void *argument)
 {
 	int playingKey;
+	uint32_t startTick = osKernelGetTickCount();
+	uint32_t tickHz    = osKernelGetTickFreq();
 	for (;;)
 	    {
+		if (g_song_playing)
+		        {
+		            uint32_t nowTick = osKernelGetTickCount();
+		            uint32_t dtTick  = nowTick - startTick;
+		            g_song_ms = (dtTick * 1000u) / tickHz;
+		        }
+		        else
+		        {
+		            startTick = osKernelGetTickCount();
+		            g_song_ms = 0;
+		        }
+
 		if(HAL_GPIO_ReadPin(Do_input_GPIO_Port,Do_input_Pin)){   playingKey = 1;highlight1_visible = 1;}
 			        else if(HAL_GPIO_ReadPin(Re_input_GPIO_Port,Re_input_Pin))  {  playingKey = 2;highlight2_visible = 1;}
 			        else if(HAL_GPIO_ReadPin(Mi_input_GPIO_Port,Mi_input_Pin))  {  playingKey = 3;highlight3_visible = 1;}
