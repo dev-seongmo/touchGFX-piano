@@ -130,6 +130,15 @@ static void MX_TIM4_Init(void);
 void StartDefaultTask(void *argument);
 extern void TouchGFX_Task(void *argument);
 
+volatile uint8_t highlight1_visible = 0;
+volatile uint8_t highlight2_visible = 0;
+volatile uint8_t highlight3_visible = 0;
+volatile uint8_t highlight4_visible = 0;
+volatile uint8_t highlight5_visible = 0;
+volatile uint8_t highlight6_visible = 0;
+volatile uint8_t highlight7_visible = 0;
+volatile uint8_t highlight8_visible = 0;
+
 /* USER CODE BEGIN PFP */
 void StartEngineTask(void *argument);
 
@@ -1091,16 +1100,16 @@ void StartEngineTask(void *argument)
 	int playingKey;
 	for (;;)
 	    {
-		if(HAL_GPIO_ReadPin(Do_input_GPIO_Port,Do_input_Pin))   playingKey = 1;
-			        else if(HAL_GPIO_ReadPin(Re_input_GPIO_Port,Re_input_Pin))    playingKey = 2;
-			        else if(HAL_GPIO_ReadPin(Mi_input_GPIO_Port,Mi_input_Pin))    playingKey = 3;
-			        else if(HAL_GPIO_ReadPin(Fa_input_GPIO_Port,Fa_input_Pin))    playingKey = 4;
-			        else if(HAL_GPIO_ReadPin(Sol_input_GPIO_Port,Sol_input_Pin))  playingKey = 5;
-			        else if(HAL_GPIO_ReadPin(La_input_GPIO_Port,La_input_Pin))    playingKey = 6;
-			        else if(HAL_GPIO_ReadPin(Si_input_GPIO_Port,Si_input_Pin))    playingKey = 7;
-			        else if(HAL_GPIO_ReadPin(Doo_input_GPIO_Port,Doo_input_Pin))  playingKey = 8;
-			        else playingKey = 0;
-		highlight1_visible = 1;
+		if(HAL_GPIO_ReadPin(Do_input_GPIO_Port,Do_input_Pin)){   playingKey = 1;highlight1_visible = 1;}
+			        else if(HAL_GPIO_ReadPin(Re_input_GPIO_Port,Re_input_Pin))  {  playingKey = 2;highlight2_visible = 1;}
+			        else if(HAL_GPIO_ReadPin(Mi_input_GPIO_Port,Mi_input_Pin))  {  playingKey = 3;highlight3_visible = 1;}
+			        else if(HAL_GPIO_ReadPin(Fa_input_GPIO_Port,Fa_input_Pin))  {  playingKey = 4;highlight4_visible = 1;}
+			        else if(HAL_GPIO_ReadPin(Sol_input_GPIO_Port,Sol_input_Pin)){  playingKey = 5;highlight5_visible = 1;}
+			        else if(HAL_GPIO_ReadPin(La_input_GPIO_Port,La_input_Pin))  {  playingKey = 6;highlight6_visible = 1;}
+			        else if(HAL_GPIO_ReadPin(Si_input_GPIO_Port,Si_input_Pin))  {  playingKey = 7;highlight7_visible = 1;}
+			        else if(HAL_GPIO_ReadPin(Doo_input_GPIO_Port,Doo_input_Pin)){  playingKey = 8;highlight8_visible = 1;}
+			        else {playingKey = 0;highlight1_visible = 0;highlight2_visible = 0;highlight3_visible = 0;highlight4_visible = 0;highlight5_visible = 0;highlight6_visible = 0;highlight7_visible = 0;highlight8_visible = 0;}
+
         playKey(playingKey);
         vTaskDelay(pdMS_TO_TICKS(10));
 	    }

@@ -17,6 +17,7 @@ play_viewView::play_viewView()
 //ai assisted code becase too slow
 void play_viewView::handleTickEvent()
 {
+    play_viewViewBase::handleTickEvent();
     static uint8_t prev1 = 255;
     static uint8_t prev2 = 255;
     static uint8_t prev3 = 255;
@@ -73,6 +74,7 @@ void play_viewView::handleTickEvent()
         highlight_8.setVisible(prev8);
         highlight_8.invalidate();
     }
+
 }
 
 void play_viewView::setupScreen()
