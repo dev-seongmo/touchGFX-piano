@@ -14,6 +14,9 @@ public:
     virtual void handleTickEvent();
 
 protected:
+private:
+    void checkLaneInput(uint8_t lane);
+    void updateJudgeText(const char* txt);
 };
 
 #endif // PLAY_VIEWVIEW_HPP

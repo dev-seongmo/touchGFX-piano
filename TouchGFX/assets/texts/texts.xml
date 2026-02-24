@@ -4,8 +4,57 @@
     <Language Id="GB" />
   </Languages>
   <Texts>
-    <TextGroup Id="Group1" />
+    <TextGroup Id="Group1">
+      <Text Id="ResourceId3" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">New Text</Translation>
+      </Text>
+    </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_QG10" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">PERFECTGAMIS</Translation>
+      </Text>
+      <Text Id="__SingleUse_TBRU" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0123456789</Translation>
+      </Text>
+      <Text Id="ResourceId2" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_RJ9L" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">PERFECTGAMIS</Translation>
+      </Text>
+      <Text Id="__SingleUse_1UA4" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="ResourceId1" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">New Text</Translation>
+      </Text>
+      <Text Id="T_combo" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">combo &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_356D" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_97Y4" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">   Go</Translation>
+      </Text>
+      <Text Id="__SingleUse_3ZVX" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Ready</Translation>
+      </Text>
+      <Text Id="__SingleUse_0PLH" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Song Select</Translation>
+      </Text>
+      <Text Id="__SingleUse_AXG9" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">Tetris Theme</Translation>
+      </Text>
+      <Text Id="__SingleUse_ED63" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">START</Translation>
+      </Text>
+      <Text Id="__SingleUse_3DJO" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Song Select</Translation>
+      </Text>
+      <Text Id="__SingleUse_ACRV" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">Twinkle Twinkle&#10;Little Star</Translation>
+      </Text>
       <Text Id="__SingleUse_F0SN" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">   Go</Translation>
       </Text>
@@ -21,5 +70,7 @@
     <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Typography_00" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Typography_01" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" />
   </Typographies>
 </TextDatabase>

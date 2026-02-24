@@ -24,10 +24,16 @@
     <ClCompile Include="..\..\gui\src\play_view_screen\play_viewPresenter.cpp"/>
     <ClCompile Include="..\..\gui\src\play_view_screen\play_viewView.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\play_view_screen\play_viewViewBase.cpp"/>
-    <ClCompile Include="..\..\gui\src\select_view_screen\select_viewPresenter.cpp"/>
-    <ClCompile Include="..\..\gui\src\select_view_screen\select_viewView.cpp"/>
-    <ClCompile Include="..\..\generated\gui_generated\src\select_view_screen\select_viewViewBase.cpp"/>
     <ClCompile Include="..\..\gui\src\ui_globals.cpp"/>
+    <ClCompile Include="..\..\gui\src\play_view_tetris_screen\play_view_tetrisPresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\play_view_tetris_screen\play_view_tetrisView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\play_view_tetris_screen\play_view_tetrisViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\select_star_screen\select_starPresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\select_star_screen\select_starView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\select_star_screen\select_starViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\select_tetris_screen\select_tetrisPresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\select_tetris_screen\select_tetrisView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\select_tetris_screen\select_tetrisViewBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -181,9 +187,15 @@
     <ClInclude Include="..\..\gui\include\gui\play_view_screen\play_viewPresenter.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\play_view_screen\play_viewView.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\play_view_screen\play_viewViewBase.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\select_view_screen\select_viewPresenter.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\select_view_screen\select_viewView.hpp"/>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\select_view_screen\select_viewViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\play_view_tetris_screen\play_view_tetrisPresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\play_view_tetris_screen\play_view_tetrisView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\play_view_tetris_screen\play_view_tetrisViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\select_star_screen\select_starPresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\select_star_screen\select_starView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\select_star_screen\select_starViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\select_tetris_screen\select_tetrisPresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\select_tetris_screen\select_tetrisView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\select_tetris_screen\select_tetrisViewBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

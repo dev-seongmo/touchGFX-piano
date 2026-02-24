@@ -4,21 +4,27 @@
 extern "C" volatile uint32_t g_song_ms;
 extern "C" volatile uint8_t  g_song_playing;
 
+static const int32_t HIT_WINDOW_MS = 300;
+
+static int combo = 0;
+static Unicode::UnicodeChar comboBuf[16];
+static Unicode::UnicodeChar judgeBuf[512];
+
 struct NoteEvent { uint8_t lane; uint32_t hit_ms; };
 
 static const NoteEvent star[] = {
 
-    {1,4000},{1,5000},{5,6000},{5,7000},{6,8000},{6,9000},{5,10000},
+    {1,4000},{1,4500},{5,5000},{5,5500},{6,6000},{6,6500},{5,7500},
 
-    {4,11000},{4,12000},{3,13000},{3,14000},{2,15000},{2,16000},{1,17000},
+    {4,8000},{4,8500},{3,9000},{3,9500},{2,10000},{2,10500},{1,11500},
 
-    {5,18000},{5,19000},{4,20000},{4,21000},{3,22000},{3,23000},{2,24000},
+    {5,12000},{5,12500},{4,13000},{4,13500},{3,14000},{3,14500},{2,15500},
 
-    {5,25000},{5,26000},{4,27000},{4,28000},{3,29000},{3,30000},{2,31000},
+    {5,16000},{5,16500},{4,17000},{4,17500},{3,18000},{3,18500},{2,19500},
 
-    {1,32000},{1,33000},{5,34000},{5,35000},{6,36000},{6,37000},{5,38000},
+    {1,20000},{1,20500},{5,21000},{5,21500},{6,22000},{6,22500},{5,23500},
 
-    {4,39000},{4,40000},{3,41000},{3,42000},{2,43000},{2,44000},{1,45000}
+    {4,24000},{4,24500},{3,25000},{3,25500},{2,26000},{2,26500},{1,27500}
 };
 static const int STAR_LEN = sizeof(star)/sizeof(star[0]);
 
@@ -56,88 +62,61 @@ play_viewView::play_viewView()
 void play_viewView::handleTickEvent()
 {
     play_viewViewBase::handleTickEvent();
-    static uint8_t prev1 = 255;
-    static uint8_t prev2 = 255;
-    static uint8_t prev3 = 255;
-    static uint8_t prev4 = 255;
-    static uint8_t prev5 = 255;
-    static uint8_t prev6 = 255;
-    static uint8_t prev7 = 255;
-    static uint8_t prev8 = 255;
 
-    if (prev1 != highlight1_visible) {
-        prev1 = highlight1_visible;
-        highlight_1.setVisible(prev1);
-        highlight_1.invalidate();
-    }
-
-    if (prev2 != highlight2_visible) {
-        prev2 = highlight2_visible;
-        highlight_2.setVisible(prev2);
-        highlight_2.invalidate();
-    }
-
-    if (prev3 != highlight3_visible) {
-        prev3 = highlight3_visible;
-        highlight_3.setVisible(prev3);
-        highlight_3.invalidate();
-    }
-
-    if (prev4 != highlight4_visible) {
-        prev4 = highlight4_visible;
-        highlight_4.setVisible(prev4);
-        highlight_4.invalidate();
-    }
-
-    if (prev5 != highlight5_visible) {
-        prev5 = highlight5_visible;
-        highlight_5.setVisible(prev5);
-        highlight_5.invalidate();
-    }
-
-    if (prev6 != highlight6_visible) {
-        prev6 = highlight6_visible;
-        highlight_6.setVisible(prev6);
-        highlight_6.invalidate();
-    }
-
-    if (prev7 != highlight7_visible) {
-        prev7 = highlight7_visible;
-        highlight_7.setVisible(prev7);
-        highlight_7.invalidate();
-    }
-
-    if (prev8 != highlight8_visible) {
-        prev8 = highlight8_visible;
-        highlight_8.setVisible(prev8);
-        highlight_8.invalidate();
-    }
     const uint32_t now = g_song_ms;
 
     // note 위젯 포인터 배열
-    touchgfx::Widget* w[10] = { &note_0,&note_1,&note_2,&note_3,&note_4,&note_5,&note_6,&note_7,&note_8,&note_9 };
+    touchgfx::Widget* w[10] = {
+        &note_0,&note_1,&note_2,&note_3,&note_4,
+        &note_5,&note_6,&note_7,&note_8,&note_9
+    };
 
-    // lane -> x 좌표 (8레인 가정, 화면 240 기준 대충 균등배치)
+    // lane -> x 좌표
     const int laneX[9] = {0,0, 40, 80, 120, 160, 200, 240, 280};
 
-    // 1) 스폰: now가 (hit_ms - travel_ms) 지나면 풀에서 빈 슬롯 하나 활성화
+    // ---------- 입력(하이라이트) 에지 감지 ----------
+    static uint8_t prev1 = 0, prev2 = 0, prev3 = 0, prev4 = 0;
+    static uint8_t prev5 = 0, prev6 = 0, prev7 = 0, prev8 = 0;
+
+    uint8_t cur1 = highlight1_visible;
+    uint8_t cur2 = highlight2_visible;
+    uint8_t cur3 = highlight3_visible;
+    uint8_t cur4 = highlight4_visible;
+    uint8_t cur5 = highlight5_visible;
+    uint8_t cur6 = highlight6_visible;
+    uint8_t cur7 = highlight7_visible;
+    uint8_t cur8 = highlight8_visible;
+
+    // 표시 갱신
+    if (prev1 != cur1) { highlight_1.setVisible(cur1); highlight_1.invalidate(); }
+    if (prev2 != cur2) { highlight_2.setVisible(cur2); highlight_2.invalidate(); }
+    if (prev3 != cur3) { highlight_3.setVisible(cur3); highlight_3.invalidate(); }
+    if (prev4 != cur4) { highlight_4.setVisible(cur4); highlight_4.invalidate(); }
+    if (prev5 != cur5) { highlight_5.setVisible(cur5); highlight_5.invalidate(); }
+    if (prev6 != cur6) { highlight_6.setVisible(cur6); highlight_6.invalidate(); }
+    if (prev7 != cur7) { highlight_7.setVisible(cur7); highlight_7.invalidate(); }
+    if (prev8 != cur8) { highlight_8.setVisible(cur8); highlight_8.invalidate(); }
+
+    // ---------- 1) 스폰 ----------
     while (nextIdx < STAR_LEN)
     {
-        uint32_t hit = star[nextIdx].hit_ms;
+        uint32_t hit   = star[nextIdx].hit_ms;
         uint32_t spawn = (hit > travel_ms) ? (hit - travel_ms) : 0;
 
         if (now < spawn) break;
 
         // 빈 슬롯 찾기
         int slot = -1;
-        for (int i=0;i<10;i++) { if (!pool[i].active) { slot = i; break; } }
-        if (slot < 0) break; // 풀 꽉 참 -> 다음 tick에
+        for (int i=0;i<10;i++)
+        {
+            if (!pool[i].active) { slot = i; break; }
+        }
+        if (slot < 0) break; // 풀 꽉 참
 
         pool[slot].active = true;
         pool[slot].lane   = star[nextIdx].lane;
         pool[slot].hit_ms = hit;
 
-        // 초기 위치 세팅
         int x = laneX[pool[slot].lane];
         w[slot]->moveTo(x, y_spawn);
         w[slot]->setVisible(true);
@@ -145,37 +124,88 @@ void play_viewView::handleTickEvent()
 
         nextIdx++;
     }
-
-    // 2) 이동/삭제
+    bool missedThisTick = false;
+    // ---------- 2) 이동 + 자동 MISS ----------
     for (int i=0;i<10;i++)
     {
         if (!pool[i].active) continue;
 
         uint32_t hit = pool[i].hit_ms;
-        uint32_t spawn = (hit > travel_ms) ? (hit - travel_ms) : 0;
 
-        // progress [0..1]
-        int32_t dt = (int32_t)(now - spawn);
-        int y = y_spawn + (int)((int32_t)(y_hit - y_spawn) * dt / (int32_t)travel_ms);
-        // 이전 영역 지우고 이동
-        w[i]->invalidate();
-        w[i]->moveTo(laneX[pool[i].lane], y);
-        w[i]->invalidate();
-
-        // 화면 아래로 충분히 내려가면 비활성화
-        if (y > y_kill)
+        if ((int32_t)now - (int32_t)hit > HIT_WINDOW_MS)
 {
     pool[i].active = false;
     w[i]->setVisible(false);
     w[i]->invalidate();
+
+    missedThisTick = true;   // ✅ 표시/콤보는 나중에 한 번만
+    continue;
 }
+        uint32_t spawn = (hit > travel_ms) ? (hit - travel_ms) : 0;
+
+int32_t dt = (int32_t)(now - spawn);
+if (dt < 0) dt = 0;
+
+// dt가 travel_ms보다 크면 hit 이후 구간
+int y;
+if (dt <= (int32_t)travel_ms)
+{
+    // spawn -> hit
+    y = y_spawn + (int)((int32_t)(y_hit - y_spawn) * dt / (int32_t)travel_ms);
+}
+else
+{
+    // hit 이후에도 계속 내려가게 (속도 동일하게)
+    int32_t dt2 = dt - (int32_t)travel_ms;     // hit 이후 경과시간
+    y = y_hit + (int)((int32_t)(y_hit - y_spawn) * dt2 / (int32_t)travel_ms);
+}
+
+        w[i]->invalidate();
+        w[i]->moveTo(laneX[pool[i].lane], y);
+        w[i]->invalidate();
+
+        // 화면 정리용
+        if (y > y_kill)
+        {
+            pool[i].active = false;
+            w[i]->setVisible(false);
+            w[i]->invalidate();
+        }
     }
+
+    // ---------- 3) 입력 판정 (0 -> 1 에지) ----------
+    if (prev1 == 0 && cur1 == 1) checkLaneInput(1);
+    if (prev2 == 0 && cur2 == 1) checkLaneInput(2);
+    if (prev3 == 0 && cur3 == 1) checkLaneInput(3);
+    if (prev4 == 0 && cur4 == 1) checkLaneInput(4);
+    if (prev5 == 0 && cur5 == 1) checkLaneInput(5);
+    if (prev6 == 0 && cur6 == 1) checkLaneInput(6);
+    if (prev7 == 0 && cur7 == 1) checkLaneInput(7);
+    if (prev8 == 0 && cur8 == 1) checkLaneInput(8);
+
+    // 마지막 상태 저장
+    prev1 = cur1; prev2 = cur2; prev3 = cur3; prev4 = cur4;
+    prev5 = cur5; prev6 = cur6; prev7 = cur7; prev8 = cur8;
+    if (missedThisTick)
+{
+    combo = 0;
+    Unicode::snprintf(comboBuf, 16, "%d", combo);
+    combo_text.setWildcard(comboBuf);
+    combo_text.invalidate();
+
+    updateJudgeText("MISS");
+}
 }
 
 void play_viewView::setupScreen()
 {
     play_viewViewBase::setupScreen();
+    combo = 0;
+    Unicode::snprintf(comboBuf, 16, "%d", combo);
+    combo_text.setWildcard(comboBuf);
+    combo_text.invalidate();
 
+    updateJudgeText("READY");
     g_song_playing = 1;
     nextIdx = 0;
 
@@ -201,4 +231,74 @@ void play_viewView::tearDownScreen()
 {
     g_song_playing = 0;
     play_viewViewBase::tearDownScreen();
+}
+
+
+//판정함수
+void play_viewView::checkLaneInput(uint8_t lane)
+{
+    const uint32_t now = g_song_ms;
+
+    touchgfx::Widget* w[10] = { 
+        &note_0,&note_1,&note_2,&note_3,&note_4,
+        &note_5,&note_6,&note_7,&note_8,&note_9 
+    };
+
+    int bestIdx = -1;
+    int32_t bestAbs = 0x7FFFFFFF;
+
+    for (int i = 0; i < 10; i++)
+    {
+        if (!pool[i].active) continue;
+        if (pool[i].lane != lane) continue;
+
+        int32_t diff = (int32_t)now - (int32_t)pool[i].hit_ms;
+        int32_t ad = diff < 0 ? -diff : diff;
+
+        if (ad < bestAbs)
+        {
+            bestAbs = ad;
+            bestIdx = i;
+        }
+    }
+
+    if (bestIdx >= 0 && bestAbs <= HIT_WINDOW_MS)
+    {
+        const int32_t diff = (int32_t)now - (int32_t)pool[bestIdx].hit_ms;
+        const int32_t ad   = diff < 0 ? -diff : diff;
+
+        const char* judge = "GOOD";
+        if (ad <= 80)       judge = "PERFECT";
+        else if (ad <= 160) judge = "GREAT";
+
+        pool[bestIdx].active = false;
+        w[bestIdx]->setVisible(false);
+        w[bestIdx]->invalidate();
+
+        combo++;
+
+        Unicode::snprintf(comboBuf, 16, "%d", combo);
+        combo_text.setWildcard(comboBuf);
+        combo_text.invalidate();
+
+        updateJudgeText(judge);
+    }
+    else
+    {
+        combo = 0;
+
+        Unicode::snprintf(comboBuf, 16, "%d", combo);
+        combo_text.setWildcard(comboBuf);
+        combo_text.invalidate();
+
+        updateJudgeText("MISS");
+    }
+}
+
+
+void play_viewView::updateJudgeText(const char* txt)
+{
+    Unicode::snprintf(judgeBuf, 512, "%s", txt);
+    judge_text.setWildcard(judgeBuf);
+    judge_text.invalidate();
 }

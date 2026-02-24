@@ -178,23 +178,47 @@
     <Filter Include="Header Files\gui\play_view_screen">
       <UniqueIdentifier>729679B4-62CC-4846-B68F-F506123483EA</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gui\select_view_screen">
-      <UniqueIdentifier>004F7FE0-DBBE-BF17-8D72-B7ECADDBB67E</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gui\select_view_screen">
-      <UniqueIdentifier>9BDDCE77-21BE-2A87-B1D6-62FA276AFFB9</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\generated\gui_generated\select_view_screen">
-      <UniqueIdentifier>D8019675-73A7-6CC3-2B19-A535C264CD19</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\generated\gui_generated\play_view_screen">
       <UniqueIdentifier>9D929F3B-0E76-2A5D-03EC-2A9C1E5A457A</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\generated\gui_generated\select_view_screen">
-      <UniqueIdentifier>BC2EF279-7E20-3B01-9ABA-F2EA045EF64D</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\generated\gui_generated\play_view_screen">
       <UniqueIdentifier>6423DC6F-DF4B-4534-655C-8683C5D20485</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\select_star_screen">
+      <UniqueIdentifier>23CF8CAB-6F47-20FE-D1A4-44298BA90311</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\select_star_screen">
+      <UniqueIdentifier>4CE322D0-F8B9-0EE2-510D-59FE8A67451F</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\play_view_tetris_screen">
+      <UniqueIdentifier>8794AB97-B6D9-FA0D-05C6-6FAF2232E870</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\play_view_tetris_screen">
+      <UniqueIdentifier>6D273C95-7532-6487-E136-9E10DC38BA90</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\select_tetris_screen">
+      <UniqueIdentifier>D8B1B6F6-A1EE-7854-90D7-AE407E0BE2EF</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\select_tetris_screen">
+      <UniqueIdentifier>207F8DFC-2726-309E-4B22-1EAF6475D758</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\select_tetris_screen">
+      <UniqueIdentifier>6ABDE266-9EE5-3673-FB4D-A1953B72B332</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\select_tetris_screen">
+      <UniqueIdentifier>64ABCFE4-9810-14E0-00AA-66435D531BD7</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\select_star_screen">
+      <UniqueIdentifier>21D16F02-8246-20DC-19E6-44852B3503FE</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\select_star_screen">
+      <UniqueIdentifier>7965E073-6FBA-BD86-0712-279D4566B21A</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\play_view_tetris_screen">
+      <UniqueIdentifier>7972C63B-4716-1EF9-1873-3AFA8F660142</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\play_view_tetris_screen">
+      <UniqueIdentifier>DCE8888F-BDE2-E2C2-023E-61165F29E266</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -237,17 +261,35 @@
     <ClCompile Include="..\..\generated\gui_generated\src\play_view_screen\play_viewViewBase.cpp">
       <Filter>Source Files\generated\gui_generated\play_view_screen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\select_view_screen\select_viewPresenter.cpp">
-      <Filter>Source Files\gui\select_view_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\select_view_screen\select_viewView.cpp">
-      <Filter>Source Files\gui\select_view_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\select_view_screen\select_viewViewBase.cpp">
-      <Filter>Source Files\generated\gui_generated\select_view_screen</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\gui\src\ui_globals.cpp">
       <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\play_view_tetris_screen\play_view_tetrisPresenter.cpp">
+      <Filter>Source Files\gui\play_view_tetris_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\play_view_tetris_screen\play_view_tetrisView.cpp">
+      <Filter>Source Files\gui\play_view_tetris_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\play_view_tetris_screen\play_view_tetrisViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\play_view_tetris_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\select_star_screen\select_starPresenter.cpp">
+      <Filter>Source Files\gui\select_star_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\select_star_screen\select_starView.cpp">
+      <Filter>Source Files\gui\select_star_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\select_star_screen\select_starViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\select_star_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\select_tetris_screen\select_tetrisPresenter.cpp">
+      <Filter>Source Files\gui\select_tetris_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\select_tetris_screen\select_tetrisView.cpp">
+      <Filter>Source Files\gui\select_tetris_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\select_tetris_screen\select_tetrisViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\select_tetris_screen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -700,14 +742,32 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\play_view_screen\play_viewViewBase.hpp">
       <Filter>Header Files\generated\gui_generated\play_view_screen</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\select_view_screen\select_viewPresenter.hpp">
-      <Filter>Header Files\gui\select_view_screen</Filter>
+    <ClInclude Include="..\..\gui\include\gui\play_view_tetris_screen\play_view_tetrisPresenter.hpp">
+      <Filter>Header Files\gui\play_view_tetris_screen</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\select_view_screen\select_viewView.hpp">
-      <Filter>Header Files\gui\select_view_screen</Filter>
+    <ClInclude Include="..\..\gui\include\gui\play_view_tetris_screen\play_view_tetrisView.hpp">
+      <Filter>Header Files\gui\play_view_tetris_screen</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\select_view_screen\select_viewViewBase.hpp">
-      <Filter>Header Files\generated\gui_generated\select_view_screen</Filter>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\play_view_tetris_screen\play_view_tetrisViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\play_view_tetris_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\select_star_screen\select_starPresenter.hpp">
+      <Filter>Header Files\gui\select_star_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\select_star_screen\select_starView.hpp">
+      <Filter>Header Files\gui\select_star_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\select_star_screen\select_starViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\select_star_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\select_tetris_screen\select_tetrisPresenter.hpp">
+      <Filter>Header Files\gui\select_tetris_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\select_tetris_screen\select_tetrisView.hpp">
+      <Filter>Header Files\gui\select_tetris_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\select_tetris_screen\select_tetrisViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\select_tetris_screen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

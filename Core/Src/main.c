@@ -146,13 +146,7 @@ typedef struct {
   uint32_t time_ms;
 } NoteEvent;
 
-static const NoteEvent star[] = {
-  {1, 1000}, {1, 1500},
-  {5, 2000}, {5, 2500},
-  {6, 3000}, {6, 3500},
-  {5, 4000},
-};
-static const uint32_t star_len = sizeof(star)/sizeof(star[0]);
+
 /* USER CODE BEGIN PFP */
 void StartEngineTask(void *argument);
 
