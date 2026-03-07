@@ -34,6 +34,10 @@
     <ClCompile Include="..\..\gui\src\select_tetris_screen\select_tetrisPresenter.cpp"/>
     <ClCompile Include="..\..\gui\src\select_tetris_screen\select_tetrisView.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\select_tetris_screen\select_tetrisViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\play_view_screen\song_data.cpp"/>
+    <ClCompile Include="..\..\gui\src\score_view_screen\Score_viewPresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\score_view_screen\Score_viewView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\score_view_screen\Score_viewViewBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -196,6 +200,10 @@
     <ClInclude Include="..\..\gui\include\gui\select_tetris_screen\select_tetrisPresenter.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\select_tetris_screen\select_tetrisView.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\select_tetris_screen\select_tetrisViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\play_view_screen\song_data.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\score_view_screen\Score_viewPresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\score_view_screen\Score_viewView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\score_view_screen\Score_viewViewBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

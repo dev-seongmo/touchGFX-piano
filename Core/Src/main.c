@@ -21,6 +21,7 @@
 #include "main.h"
 #include "cmsis_os.h"
 #include "app_touchgfx.h"
+#include "rhythm_game.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -55,22 +56,6 @@
 #define I2C3_TIMEOUT_MAX                    0x3000 /*<! The value of the maximal timeout for I2C waiting loops */
 #define SPI5_TIMEOUT_MAX                    0x1000
 
-#define Do_input_Pin GPIO_PIN_10
-#define Do_input_GPIO_Port GPIOC
-#define Re_input_Pin GPIO_PIN_11
-#define Re_input_GPIO_Port GPIOC
-#define Mi_input_Pin GPIO_PIN_12
-#define Mi_input_GPIO_Port GPIOC
-#define Fa_input_Pin GPIO_PIN_2
-#define Fa_input_GPIO_Port GPIOD
-#define Sol_input_Pin GPIO_PIN_4
-#define Sol_input_GPIO_Port GPIOD
-#define La_input_Pin GPIO_PIN_5
-#define La_input_GPIO_Port GPIOD
-#define Si_input_Pin GPIO_PIN_6
-#define Si_input_GPIO_Port GPIOD
-#define Doo_input_Pin GPIO_PIN_7
-#define Doo_input_GPIO_Port GPIOD
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -130,26 +115,7 @@ static void MX_TIM4_Init(void);
 void StartDefaultTask(void *argument);
 extern void TouchGFX_Task(void *argument);
 
-volatile uint8_t highlight1_visible = 0;
-volatile uint8_t highlight2_visible = 0;
-volatile uint8_t highlight3_visible = 0;
-volatile uint8_t highlight4_visible = 0;
-volatile uint8_t highlight5_visible = 0;
-volatile uint8_t highlight6_visible = 0;
-volatile uint8_t highlight7_visible = 0;
-volatile uint8_t highlight8_visible = 0;
-//from here ai assist code
-volatile uint32_t g_song_ms = 0;
-volatile uint8_t  g_song_playing = 0;
-typedef struct {
-  uint8_t lane;
-  uint32_t time_ms;
-} NoteEvent;
-
-
 /* USER CODE BEGIN PFP */
-void StartEngineTask(void *argument);
-
 static void BSP_SDRAM_Initialization_Sequence(SDRAM_HandleTypeDef *hsdram, FMC_SDRAM_CommandTypeDef *Command);
 
 
@@ -186,48 +152,6 @@ static LCD_DrvTypeDef* LcdDrv;
 
 uint32_t I2c3Timeout = I2C3_TIMEOUT_MAX; /*<! Value of Timeout when I2C communication fails */
 uint32_t Spi5Timeout = SPI5_TIMEOUT_MAX; /*<! Value of Timeout when SPI communication fails */
-
-
-void playKey(int k){
-	switch(k){
-
-	case 1:
-		TIM4->PSC = 383;
-		TIM4->CCR2 = 500;
-		break;
-	case 2:
-		TIM4->PSC = 340;
-		TIM4->CCR2 = 500;
-		break;
-	case 3:
-		TIM4->PSC = 304;
-		TIM4->CCR2 = 500;
-		break;
-	case 4 :
-		TIM4->PSC = 287;
-		TIM4->CCR2 = 500;
-			break;
-	case 5 :
-		TIM4->PSC = 255;
-		TIM4->CCR2 = 500;
-			break;
-	case 6 :
-		TIM4->PSC = 227;
-		TIM4->CCR2 = 500;
-			break;
-	case 7 :
-		TIM4->PSC = 202;
-		TIM4->CCR2 = 500;
-			break;
-	case 8  :
-		TIM4->PSC = 191;
-		TIM4->CCR2 = 500;
-			break;
-	default:
-		TIM4->CCR2 = 0;
-			break;
-	}
-}
 /* USER CODE END 0 */
 
 /**
@@ -273,6 +197,7 @@ int main(void)
   TIM4->PSC = 80;
   TIM4->CCR2 = 500;
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
+  RhythmGame_Init();
 
   /* USER CODE END 2 */
 
@@ -1101,42 +1026,6 @@ void StartDefaultTask(void *argument)
   {
     osDelay(100);
   }
-}
-
-void StartEngineTask(void *argument)
-{
-	int playingKey;
-	uint32_t startTick = osKernelGetTickCount();
-	uint32_t tickHz    = osKernelGetTickFreq();
-	for (;;)
-	    {
-		if (g_song_playing)
-		        {
-		            uint32_t nowTick = osKernelGetTickCount();
-		            uint32_t dtTick  = nowTick - startTick;
-		            g_song_ms = (dtTick * 1000u) / tickHz;
-		        }
-		        else
-		        {
-		            startTick = osKernelGetTickCount();
-		            g_song_ms = 0;
-		        }
-
-		if(HAL_GPIO_ReadPin(Do_input_GPIO_Port,Do_input_Pin)){   playingKey = 1;highlight1_visible = 1;}
-			        else if(HAL_GPIO_ReadPin(Re_input_GPIO_Port,Re_input_Pin))  {  playingKey = 2;highlight2_visible = 1;}
-			        else if(HAL_GPIO_ReadPin(Mi_input_GPIO_Port,Mi_input_Pin))  {  playingKey = 3;highlight3_visible = 1;}
-			        else if(HAL_GPIO_ReadPin(Fa_input_GPIO_Port,Fa_input_Pin))  {  playingKey = 4;highlight4_visible = 1;}
-			        else if(HAL_GPIO_ReadPin(Sol_input_GPIO_Port,Sol_input_Pin)){  playingKey = 5;highlight5_visible = 1;}
-			        else if(HAL_GPIO_ReadPin(La_input_GPIO_Port,La_input_Pin))  {  playingKey = 6;highlight6_visible = 1;}
-			        else if(HAL_GPIO_ReadPin(Si_input_GPIO_Port,Si_input_Pin))  {  playingKey = 7;highlight7_visible = 1;}
-			        else if(HAL_GPIO_ReadPin(Doo_input_GPIO_Port,Doo_input_Pin)){  playingKey = 8;highlight8_visible = 1;}
-			        else {playingKey = 0;highlight1_visible = 0;highlight2_visible = 0;highlight3_visible = 0;highlight4_visible = 0;highlight5_visible = 0;highlight6_visible = 0;highlight7_visible = 0;highlight8_visible = 0;}
-
-        playKey(playingKey);
-        vTaskDelay(pdMS_TO_TICKS(10));
-	    }
-
-  /* USER CODE END 5 */
 }
 
 /**

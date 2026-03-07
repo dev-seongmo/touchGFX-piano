@@ -10,8 +10,47 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_QG10" Alignment="Center" TypographyId="Large">
+      <Text Id="__SingleUse_4RBH" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">   Go</Translation>
+      </Text>
+      <Text Id="__SingleUse_012B" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0123456789</Translation>
+      </Text>
+      <Text Id="__SingleUse_QUGH" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">PERFCTGAMISOD</Translation>
+      </Text>
+      <Text Id="__SingleUse_E2JH" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">PERFECTGAMIS</Translation>
+      </Text>
+      <Text Id="__SingleUse_6QW4" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_G83P" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_I4Q1" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Ready</Translation>
+      </Text>
+      <Text Id="__SingleUse_12SE" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">OK</Translation>
+      </Text>
+      <Text Id="__SingleUse_DI4C" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">LITTLE STAR</Translation>
+      </Text>
+      <Text Id="__SingleUse_AYIL" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">MISS : &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_1M94" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Good : &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_PDUY" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">GREAT : &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_XARH" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">PERFECT : &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_QG10" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">PERFCTGAMISOD</Translation>
       </Text>
       <Text Id="__SingleUse_TBRU" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">0123456789</Translation>
@@ -33,12 +72,6 @@
       </Text>
       <Text Id="__SingleUse_356D" Alignment="Center" TypographyId="Large">
         <Translation Language="GB">&lt;value&gt;</Translation>
-      </Text>
-      <Text Id="__SingleUse_97Y4" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">   Go</Translation>
-      </Text>
-      <Text Id="__SingleUse_3ZVX" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">Ready</Translation>
       </Text>
       <Text Id="__SingleUse_0PLH" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Song Select</Translation>

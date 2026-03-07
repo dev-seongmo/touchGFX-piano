@@ -1,6 +1,7 @@
 #ifndef PLAY_VIEW_TETRISPRESENTER_HPP
 #define PLAY_VIEW_TETRISPRESENTER_HPP
 
+#include "rhythm_game.h"
 #include <gui/model/ModelListener.hpp>
 #include <mvp/Presenter.hpp>
 
@@ -26,6 +27,16 @@ public:
     virtual void deactivate();
 
     virtual ~play_view_tetrisPresenter() {}
+    uint32_t getSongMs() const;
+    uint8_t getInputMask() const;
+    void startSong();
+    void stopSong();
+    void setSoundProfile(RhythmSoundProfile profile);
+    void resetScore();
+    void addPerfect();
+    void addGreat();
+    void addGood();
+    void addMiss();
 
 private:
     play_view_tetrisPresenter();

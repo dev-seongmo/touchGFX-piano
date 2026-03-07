@@ -220,6 +220,18 @@
     <Filter Include="Header Files\generated\gui_generated\play_view_tetris_screen">
       <UniqueIdentifier>DCE8888F-BDE2-E2C2-023E-61165F29E266</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\gui\score_view_screen">
+      <UniqueIdentifier>6075FABC-26A8-2E2D-77C6-490C7824FCE8</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\score_view_screen">
+      <UniqueIdentifier>C206D235-6161-1688-AA56-1757C142DBCE</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\score_view_screen">
+      <UniqueIdentifier>CB2EDA1B-4B7D-E9C5-606E-DAB69BC318C4</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\score_view_screen">
+      <UniqueIdentifier>63B5D280-704D-0BB6-3D91-BF00D9BF105D</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\driver\touch\SDL2TouchController.cpp">
@@ -290,6 +302,18 @@
     </ClCompile>
     <ClCompile Include="..\..\generated\gui_generated\src\select_tetris_screen\select_tetrisViewBase.cpp">
       <Filter>Source Files\generated\gui_generated\select_tetris_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\play_view_screen\song_data.cpp">
+      <Filter>Source Files\gui\play_view_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\score_view_screen\Score_viewPresenter.cpp">
+      <Filter>Source Files\gui\score_view_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\score_view_screen\Score_viewView.cpp">
+      <Filter>Source Files\gui\score_view_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\score_view_screen\Score_viewViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\score_view_screen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -768,6 +792,18 @@
     </ClInclude>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\select_tetris_screen\select_tetrisViewBase.hpp">
       <Filter>Header Files\generated\gui_generated\select_tetris_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\play_view_screen\song_data.hpp">
+      <Filter>Header Files\gui\play_view_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\score_view_screen\Score_viewPresenter.hpp">
+      <Filter>Header Files\gui\score_view_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\score_view_screen\Score_viewView.hpp">
+      <Filter>Header Files\gui\score_view_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\score_view_screen\Score_viewViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\score_view_screen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

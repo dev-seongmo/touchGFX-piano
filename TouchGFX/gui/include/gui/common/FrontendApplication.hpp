@@ -2,8 +2,11 @@
 #define FRONTENDAPPLICATION_HPP
 
 #include <gui_generated/common/FrontendApplicationBase.hpp>
+#include <touchgfx/transitions/NoTransition.hpp>
 
 class FrontendHeap;
+class Score_viewPresenter;
+class Score_viewView;
 
 using namespace touchgfx;
 
@@ -18,6 +21,8 @@ public:
         model.tick();
         FrontendApplicationBase::handleTickEvent();
     }
+
+    void gotoScore_viewScreenNoTransition();
 private:
 };
 
