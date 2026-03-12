@@ -6,7 +6,7 @@ extern TIM_HandleTypeDef htim4;
 
 static SoundProfile currentProfile = SOUND_PROFILE_TWINKLE;
 
-static const uint16_t twinklePscByLane[8] = {383, 340, 304, 287, 255, 227, 202, 191};
+static const uint16_t twinklePscByLane[8] = {320, 285, 254, 239, 213, 190, 169, 159};
 static const uint16_t tetrisPscByLane[8] = {304, 270, 255, 227, 202, 191, 170, 152};
 
 void AudioTask_SetSoundProfile(SoundProfile profile)

@@ -10,6 +10,9 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_I4Q1" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Ready</Translation>
+      </Text>
       <Text Id="__SingleUse_4RBH" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">   Go</Translation>
       </Text>
@@ -17,19 +20,16 @@
         <Translation Language="GB">0123456789</Translation>
       </Text>
       <Text Id="__SingleUse_QUGH" Alignment="Center" TypographyId="Large">
-        <Translation Language="GB">PERFCTGAMISOD</Translation>
+        <Translation Language="GB">PERFCTGAMISODY</Translation>
       </Text>
       <Text Id="__SingleUse_E2JH" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">PERFECTGAMIS</Translation>
       </Text>
       <Text Id="__SingleUse_6QW4" Alignment="Center" TypographyId="Large">
-        <Translation Language="GB">&lt;value&gt;</Translation>
+        <Translation Language="GB"> &lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_G83P" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">0</Translation>
-      </Text>
-      <Text Id="__SingleUse_I4Q1" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">Ready</Translation>
       </Text>
       <Text Id="__SingleUse_12SE" Alignment="Center" TypographyId="Default">
         <Translation Language="GB">OK</Translation>
@@ -50,7 +50,7 @@
         <Translation Language="GB">PERFECT : &lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_QG10" Alignment="Center" TypographyId="Large">
-        <Translation Language="GB">PERFCTGAMISOD</Translation>
+        <Translation Language="GB">PERFCTGAMISODY</Translation>
       </Text>
       <Text Id="__SingleUse_TBRU" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">0123456789</Translation>
