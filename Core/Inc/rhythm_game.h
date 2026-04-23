@@ -23,8 +23,9 @@ typedef struct
 void RhythmGame_Init(void);
 void RhythmGame_StartSong(void);
 void RhythmGame_StopSong(void);
-void RhythmGame_SetSoundProfile(RhythmSoundProfile profile);
-void RhythmGame_GetState(RhythmSharedState* state);
+void RhythmGame_SetProfile(RhythmSoundProfile profile);
+void RhythmGame_GetSharedState(RhythmSharedState* state);
+void RhythmGame_PushInput(uint8_t inputMask);
 void StartEngineTask(void* argument);
 
 #ifdef __cplusplus

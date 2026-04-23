@@ -13,7 +13,7 @@ Model::Model() : modelListener(0),
 void Model::tick()
 {
     RhythmSharedState state;
-    RhythmGame_GetState(&state);
+    RhythmGame_GetSharedState(&state);
     songMs = state.song_ms;
     inputMask = state.input_mask;
 }
@@ -41,7 +41,7 @@ void Model::stopSong()
 
 void Model::setSoundProfile(RhythmSoundProfile profile)
 {
-    RhythmGame_SetSoundProfile(profile);
+    RhythmGame_SetProfile(profile);
 }
 
 void Model::resetScore()
